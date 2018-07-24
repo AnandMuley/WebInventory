@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+	<context:component-scan base-package="com.freemind" />
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<!-- This will specify which directory contains the static resources. Change 
+		location as per your need. -->
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="contentType" value="text/html;charset=UTF-8" />
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	<!-- i18 file add in message connecter -->
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basename" value="WEB-INF/i18n/messages" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+	
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<beans:property name="defaultLocale" value="mr" />
+		<beans:property name="cookieName" value="myAppLocaleCookie" />
+		<beans:property name="cookieMaxAge" value="3600" />
+	</beans:bean>
+	
+<!--	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="locale" />
+	</bean>-->
+
+	<mvc:interceptors>
+		<beans:bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="locale" />
+		</beans:bean>
+	</mvc:interceptors>
+
+<!--<interceptors>
+		<beans:bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="locale" />
+		</beans:bean>
+	</interceptors>-->
+	<beans:bean
+		class="org.springframework.ui.context.support.ResourceBundleThemeSource"
+		id="themeSource" />
+	<beans:bean class="org.springframework.web.servlet.theme.CookieThemeResolver"
+		id="themeResolver" p:cookieName="theme" p:defaultThemeName="standard" />
+
+	<beans:bean id="securityLoginManager" class="com.freemind.dao.impl.LoginDaoImpl" />
+
+	<!-- Multipart Resolver For File Uploading -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- max file size in bytes -->
+		<beans:property name="maxUploadSize" value="104857600" />
+	</beans:bean>
+</beans:beans>
