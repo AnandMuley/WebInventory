@@ -9,7 +9,7 @@
 <jsp:include page="/WEB-INF/views/body.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 
-<spring:url value="/addCustomer" var="saveCustomerUrl" />
+<spring:url value="/customers" var="saveCustomerUrl" />
 <spring:url value="/updateCustomerDefaulter"
 	var="updateCustomerDefaulterUrl" />
 <spring:url value="/deleteCustomer" var="deleteCustomerUrl" />
@@ -57,7 +57,7 @@
 						</div>
 
                         <div class="col-xs-3">
-							<label><spring:message code="label.page.mobileNo" /></label><input
+							<label><spring:message code="label.page.mobileNo" /></label><input maxlength="10"
 								type="text" id="mobileNo" name="mobileNo" class="form-control"
 								placeholder="<spring:message code="label.page.mobileNo" />">
 						</div>

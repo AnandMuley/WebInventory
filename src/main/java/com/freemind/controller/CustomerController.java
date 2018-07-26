@@ -20,7 +20,7 @@ import com.freemind.model.Customer;
 import com.freemind.services.CustomerService;
 
 @Controller
-@RequestMapping("addCustomer")
+@RequestMapping("customers")
 public class CustomerController {
 
 	@Autowired
@@ -29,7 +29,7 @@ public class CustomerController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView handleRequest(Model model, HttpServletRequest request) {
 		model.addAttribute("customerList", customerService.getAllCustomerList());
-		return new ModelAndView("Customer/Customer");
+		return new ModelAndView("Customer/Home");
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -44,7 +44,7 @@ public class CustomerController {
 		uiModel.addAttribute("msgType1", "1");
 		uiModel.addAttribute("msg", "Customer Added Successfully!!!");
 
-		return new ModelAndView("redirect:/addCustomer");
+		return new ModelAndView("redirect:/customers");
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "updateCustomerDefaulter/{id}/{status}")

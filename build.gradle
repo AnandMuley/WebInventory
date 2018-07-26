@@ -1,0 +1,144 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+apply plugin: 'jacoco'
+
+sourceCompatibility = 1.7
+version = '1.0'
+def SpringVersion = '3.2.1.RELEASE'
+def SpockVersion = '1.1-groovy-2.4-rc-3'
+def FasterXmlJacksonVersion = '2.9.5'
+def SpringSecurityVersion = '3.2.1.RELEASE'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'WebInventory',
+                'Implementation-Version': version
+    }
+}
+
+ext{
+
+    commons = [
+            fileupload: "commons-fileupload:commons-fileupload:1.2.1",
+            io        : "commons-io:commons-io:2.4",
+            xmlapis   : "xml-apis:xml-apis:1.4.01",
+            lang      : 'commons-lang:commons-lang:2.6',
+            collections : "commons-collections:commons-collections:3.2.1"
+    ]
+
+    spring = [
+            web           	: "org.springframework:spring-web:${SpringVersion}",
+            webmvc        	: "org.springframework:spring-webmvc:${SpringVersion}",
+            core          	: "org.springframework:spring-core:${SpringVersion}",
+            beans         	: "org.springframework:spring-beans:${SpringVersion}",
+            expression    	: "org.springframework:spring-expression:${SpringVersion}",
+            contextSupport	: "org.springframework:spring-context-support:${SpringVersion}",
+            jdbc          	: "org.springframework:spring-jdbc:${SpringVersion}",
+            datajpa         : "org.springframework.data:spring-data-jpa:1.9.0.RELEASE",
+            mongo 			: "org.springframework.data:spring-data-mongodb:1.7.1.RELEASE",
+            test          	: "org.springframework:spring-test:${SpringVersion}",
+            security 		: "org.springframework.security:spring-security-web:${SpringSecurityVersion}",
+            orm 			: "org.springframework:spring-orm:${SpringVersion}"
+    ]
+
+    javax = [
+            jstl : 'javax.servlet:jstl:1.2',
+            el  : 'javax.el:javax.el-api:2.2.4'
+    ]
+
+    mongoDB = "org.mongodb:mongo-java-driver:2.12.2"
+
+    jackson = [
+            "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:$FasterXmlJacksonVersion",
+            "com.fasterxml.jackson.core:jackson-core:$FasterXmlJacksonVersion"
+    ]
+
+    jsonlib = 'org.json:json:20090211'
+    servletApi = 'javax.servlet:javax.servlet-api:3.0.1'
+
+    validation = [
+            javax    : 'javax.validation:validation-api:1.1.0.Final',
+            hibernate: 'org.hibernate:hibernate-validator:5.1.3.Final'
+    ]
+
+    jodatime = 'joda-time:joda-time:2.8.1'
+
+    // Test Dependencies
+    testng = "org.testng:testng:6.9.4"
+
+    itextpdf = "com.itextpdf:itextpdf:5.4.2"
+    itextxml = "com.itextpdf.tool:xmlworker:5.4.2"
+
+    groovy = 'org.codehaus.groovy:groovy-all:2.4.7'
+
+    spock = [
+            core : "org.spockframework:spock-core:$SpockVersion",
+            cglib : 'cglib:cglib-nodep:3.2.4',
+            objenesis : 'org.objenesis:objenesis:2.4'
+    ]
+
+}
+
+war{
+    zip64 = true
+}
+
+test {
+    include 'src/test/java**'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocoHtml"
+    }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    '**/beans',
+                    '**/dtos',
+                    '**/exceptions'
+            ])
+        })
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url "https://jcenter.bintray.com"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-cargo-plugin:2.2.3'
+        classpath "gradle.plugin.org.akhikhl.gretty:gretty:2.0.0"
+    }
+}
+
+gretty {
+    httpPort = 8091
+    scanInterval = 1
+//  host = '127.0.0.1'
+    servletContainer = 'jetty8'
+    managedClassReload = true
+    jacocoEnabled = false
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile spring.core,spring.web,spring.webmvc,spring.security
+    compile jodatime,servletApi,itextpdf,itextxml,commons.collections
+    compile commons.fileupload,javax.jstl,javax.el,commons.io
+    compile jackson,mongoDB,spring.mongo
+    testCompile spock.core,spock.cglib,spock.objenesis, groovy
+}

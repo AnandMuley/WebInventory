@@ -39,7 +39,7 @@
 <spring:url value="/addSaleBill" var="addSaleBillUrl" />
 <spring:url value="/addSaleBill/addCustomers" var="addClientUrl" />
 <spring:url value="/addUserPermission" var="userPermission" />
-<spring:url value="/addCustomer" var="showCustomerUrl" />
+<spring:url value="/customers" var="showCustomerUrl" />
 <nav class="navbar navbar-default navbar-static-top" role="navigation"
 	style="margin-bottom: 0">
 	<div class="navbar-header">
