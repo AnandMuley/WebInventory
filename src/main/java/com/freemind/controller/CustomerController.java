@@ -41,7 +41,7 @@ public class CustomerController {
 			HttpServletRequest httpServletRequest, Locale locale) {
 		customerService.save(customer);
 
-		uiModel.addAttribute("msgType1", "1");
+		uiModel.addAttribute("msgType", "1");
 		uiModel.addAttribute("msg", "Customer Added Successfully!!!");
 
 		return new ModelAndView("redirect:/customers");
@@ -55,7 +55,7 @@ public class CustomerController {
 			customerService.updateCustomerDefaulter(id, false);
 		else
 			customerService.updateCustomerDefaulter(id, true);
-		uiModel.addAttribute("msgType1", "1");
+		uiModel.addAttribute("msgType", "1");
 		uiModel.addAttribute("msg", "Customer Updated Successfully!!!");
 		return new ModelAndView("redirect:/customers");
 	}
@@ -64,7 +64,7 @@ public class CustomerController {
 	public ModelAndView delete(@PathVariable("id") Integer id, Model uiModel,
 			HttpServletRequest httpServletRequest) {
 		customerService.updateCustomerActivityStatus(id, false);
-		uiModel.addAttribute("msgType1", "1");
+		uiModel.addAttribute("msgType", "1");
 		uiModel.addAttribute("msg", "Customer Deleted Successfully!!!");
 		return new ModelAndView("redirect:/customers");
 	}
