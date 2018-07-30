@@ -47,9 +47,9 @@ public class CustomerController {
 		return new ModelAndView("redirect:/customers");
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "updateCustomerDefaulter/{id}/{status}")
+	@RequestMapping(method = RequestMethod.GET, value = "update/{id}/{status}")
 	public ModelAndView updateCutomerDefaulter(@PathVariable("id") Integer id,
-			@PathVariable boolean defaulter, Model uiModel,
+			@PathVariable("status") boolean defaulter, Model uiModel,
 			HttpServletRequest httpServletRequest) {
 		if (defaulter == true)
 			customerService.updateCustomerDefaulter(id, false);
@@ -57,15 +57,15 @@ public class CustomerController {
 			customerService.updateCustomerDefaulter(id, true);
 		uiModel.addAttribute("msgType1", "1");
 		uiModel.addAttribute("msg", "Customer Updated Successfully!!!");
-		return new ModelAndView("redirect:/showCustomer");
+		return new ModelAndView("redirect:/customers");
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "deleteCustomer/{id}")
-	public ModelAndView deleteCustomer(@PathVariable("id") Integer id, Model uiModel,
+	@RequestMapping(method = RequestMethod.GET, value = "delete/{id}")
+	public ModelAndView delete(@PathVariable("id") Integer id, Model uiModel,
 			HttpServletRequest httpServletRequest) {
 		customerService.updateCustomerActivityStatus(id, false);
 		uiModel.addAttribute("msgType1", "1");
 		uiModel.addAttribute("msg", "Customer Deleted Successfully!!!");
-		return new ModelAndView("redirect:/showCustomer");
+		return new ModelAndView("redirect:/customers");
 	}
 }

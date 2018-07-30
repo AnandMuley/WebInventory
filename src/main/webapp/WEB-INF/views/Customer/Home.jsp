@@ -9,10 +9,7 @@
 <jsp:include page="/WEB-INF/views/body.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 
-<spring:url value="/customers" var="saveCustomerUrl" />
-<spring:url value="/updateCustomerDefaulter"
-	var="updateCustomerDefaulterUrl" />
-<spring:url value="/deleteCustomer" var="deleteCustomerUrl" />
+<spring:url value="/customers" var="customerUrl" />
 <script type="text/javascript">
 	function onloadDisableUpdateBtn() {
 		$("#save").prop('disabled', false);
@@ -32,7 +29,7 @@
 			<div class="container-fluid">
 				<form:form class="mws-form" Commandname="addCustomer"
 					name="addCustomerForm" id="myForm" modelAttribute="addCustomer"
-					action="${saveCustomerUrl}" method="post">
+					action="${customerUrl}" method="post">
 					<div class="row">
 						<div class="col-lg-12">
 							<h1 class="page-header">
@@ -119,10 +116,10 @@
 													onclick="viewCustomerDetails('${customer.id}','${customer.customerName}','${customer.address}','${customer.mobileNo}')">
 														<img
 														src="<%=request.getContextPath()%>/resources/images/edit-notes.png"></img>
-												</a> <a href="${deleteCustomerUrl}/${customer.id}"> <img
+												</a> <a href="${customerUrl}/delete/${customer.id}"> <img
 														src="<%=request.getContextPath()%>/resources/images/DeleteRed.png"></img>
 												</a> <a
-													href="${updateCustomerUrl}/${customer.id}/${customer.defaulter}">
+													href="${customerUrl}/update/${customer.id}/${customer.defaulter}">
 														${customer.defaulter==true?'Remove Defaulter':'Make Defaulter'}
 												</a></td>
 
