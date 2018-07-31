@@ -14,7 +14,7 @@
 
 
 <spring:url value="/addProduct" var="addProductUrl" />
-<spring:url value="/showVendor" var="showVendorUrl" />
+<spring:url value="/vendors" var="showVendorUrl" />
 <spring:url value="/addproject" var="addprojectUrl" />
 <spring:url value="/addprn" var="addPRNUrl" />
 <spring:url value="/addprn/viewprn" var="viewaddPRNUrl" />
@@ -277,11 +277,11 @@
 										code="label.menu.addProduct" /></a></li>
 						</c:if>
 
-						<!--	<c:if test="${fn:contains(permissionList, 'Add Vendor' ) || sessionScope.userName=='admin'}">
+						<c:if test="${fn:contains(permissionList, 'Add Vendor' ) || sessionScope.userName=='admin'}">
 							<c:set var="showMenu" value="true" />
 							<li><a href="${showVendorUrl}"><spring:message code="label.menu.addVendor"/></a></li>
 						</c:if>
-						<c:if test="${fn:contains(permissionList, 'Import Product' ) || sessionScope.userName=='admin'}">
+						<!--	<c:if test="${fn:contains(permissionList, 'Import Product' ) || sessionScope.userName=='admin'}">
 							<c:set var="showMenu" value="true" />
 							<li><a href="${importProduct}"><spring:message code="label.menu.importProduct"/> </a></li>
 						</c:if>-->

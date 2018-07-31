@@ -9,9 +9,7 @@
 <jsp:include page="/WEB-INF/views/body.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
 
-<spring:url value="/saveVendor" var="addVendorUrl" />
-<spring:url value="/updateVendor" var="updateVendorUrl" />
-<spring:url value="/deleteVendor" var="deleteVendorUrl" />
+<spring:url value="/vendors" var="vendorUrl" />
 <script type="text/javascript">
 function onloadDisableUpdateBtn() {
 	$("#save").prop('disabled', false);
@@ -30,14 +28,14 @@ function onloadDisableUpdateBtn() {
 			<div class="container-fluid">
 				<form:form class="mws-form" Commandname="vendor"
 					name="addVendorForm" id="myForm" modelAttribute="vendor"
-					action="${addVendorUrl}" method="post">
+					action="${vendorUrl}" method="post">
 					<div class="row">
 						<div class="col-lg-12">
 							<h1 class="page-header">
 								<spring:message code="label.menu.addVendor" />
 							</h1>
 						</div>
-						<div>
+						<div class="col-lg-12">
 							<jsp:include page="/WEB-INF/views/messagesBlock.jsp"></jsp:include>
 						</div>
 						<!-- /.col-lg-12 -->
@@ -87,7 +85,7 @@ function onloadDisableUpdateBtn() {
 						</div>
 						<div class="col-xs-3">
 							<label><spring:message code="label.page.mobileNo" /></label><input
-								type="text" id="mobileNo" name="mobileNo" class="form-control"
+								type="text" id="mobileNo" name="mobileNo" maxlength="10" class="form-control"
 								placeholder="<spring:message code="label.page.mobileNo" />">
 						</div>
 						<div class="col-xs-3">
@@ -163,7 +161,7 @@ function onloadDisableUpdateBtn() {
 													onclick="viewVendorDetails('${vendors.id}','${vendors.vendorNames}','${vendors.address}','${vendors.state}','${vendors.city}', '${vendors.pincode}', '${vendors.mobileNo}', '${vendors.landlineNo}' ,'${vendors.emailId}','${vendors.tinNo}')">
 														<img
 														src="<%=request.getContextPath()%>/resources/images/edit-notes.png"></img></a>
-												 <a href="${updateVendorUrl}/${vendors.id}/${vendors.active}">
+												 <a href="${vendorUrl}/update/${vendors.id}/${vendors.active}">
 														${vendors.active==true?'Inactive':'Active'}
 												</a></td>
 

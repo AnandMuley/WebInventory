@@ -36,7 +36,7 @@
 								<spring:message code="label.menu.customer" />
 							</h1>
 						</div>
-						<div>
+						<div class="col-lg-12">
 							<jsp:include page="/WEB-INF/views/messagesBlock.jsp"></jsp:include>
 						</div>
 						<!-- /.col-lg-12 -->

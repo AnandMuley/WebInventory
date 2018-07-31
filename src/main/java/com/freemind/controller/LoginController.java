@@ -60,7 +60,7 @@ public class LoginController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/showCity", method = RequestMethod.POST)
+	@RequestMapping(value = "/showCity", method = RequestMethod.POST,produces = "text/html; charset=utf-8")
 	public String getCityUsingStateName(
 			@RequestParam("stateName") String stateName) {
 		String content = " <select id='city' name='city' style='height: 30px !important; class='form-control'>";
