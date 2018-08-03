@@ -26,8 +26,8 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.getCustomerById(id);
 	}
 	@Override
-	public Customer getCustomerByMobileNo(String id) {
-		return customerDao.getCustomerByMobileNo(id);
+	public Customer getCustomerByMobileNo(String mobileNo) {
+		return customerDao.getCustomerByMobileNo(mobileNo);
 	}
 	@Override
 	public void save(Customer customer) {

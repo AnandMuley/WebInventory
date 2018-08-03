@@ -168,7 +168,7 @@
 											<spring:message code="label.page.clear" />
 										</button>
 										<button type="button"
-											onclick="javascript:getCustomerDetailsById($('#mobileNo').val());"
+											onclick="javascript:getCustomerDetailsByMobileNo($('#mobileNo').val());"
 											class="btn btn-info">
 											<spring:message code="label.page.search" />
 										</button>

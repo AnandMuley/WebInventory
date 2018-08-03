@@ -21,7 +21,7 @@ return false;
 function getCityNameByState(stateName) {
 	$.ajax({
 		type : 'POST',
-		url : 'showCity.html',
+		url : contextPath+'/showCity.html',
 		data : {
 			stateName : stateName
 		},

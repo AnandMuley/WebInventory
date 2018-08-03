@@ -137,14 +137,16 @@ public class SaleDaoImpl implements SaleDao {
 					session.update(paymentDetails);
 				}
 			}
-			transaction.commit();
-
 			return true;
 		} catch (Exception e) {
 			if (transaction != null)
 				transaction.rollback();
 			e.printStackTrace();
 			return false;
+		}finally {
+			transaction.commit();
+			session.clear();
+			session.close();
 		}
 	}
 

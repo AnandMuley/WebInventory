@@ -27,26 +27,34 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
+@RequestMapping("billing")
 public class SaleBillController {
 
 	@Autowired
-	CustomerService customerService;
-	@Autowired
-	ProductService productService;
-	@Autowired
-	GstService gstService;
-	@Autowired
-	UnitService unitService;
-	@Autowired
-	ServiceTaxService serviceTaxService;
-	@Autowired
-	CategoryService categoryService;
-	@Autowired
-	SaleService saleService;
-	@Autowired
-	SaleDetailsService saleDetailsService;
+	private CustomerService customerService;
 
-	@RequestMapping(value = "/addSaleBill", method = RequestMethod.GET)
+	@Autowired
+	private ProductService productService;
+
+	@Autowired
+	private GstService gstService;
+
+	@Autowired
+	private UnitService unitService;
+
+	@Autowired
+	private ServiceTaxService serviceTaxService;
+
+	@Autowired
+	private CategoryService categoryService;
+
+	@Autowired
+	private SaleService saleService;
+
+	@Autowired
+	private SaleDetailsService saleDetailsService;
+
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView showSaleBill(Model uiModel, ModelMap model, HttpServletRequest httpServletRequest) {
 		model.addAttribute("customerList", customerService.getAllCustomerList());
 		model.addAttribute("categoryList", categoryService.listCategory());
@@ -57,9 +65,14 @@ public class SaleBillController {
 		return new ModelAndView("Sale/SaleBill");
 	}
 
-	@RequestMapping(value = "/getCustomerDetails", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody Customer getCustomerInJSON(@RequestParam("id") String id) {
-		return customerService.getCustomerByMobileNo(id);
+	@RequestMapping(value = "customers",method = RequestMethod.GET)
+	public ModelAndView renderSaveCustomers(){
+		return new ModelAndView("Sale/ClientsOrCustomers");
+	}
+
+	@RequestMapping(value = "/customers/search", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody Customer getCustomerInJSON(@RequestParam("mobileNo") String mobileNo) {
+		return customerService.getCustomerByMobileNo(mobileNo);
 
 	}
 

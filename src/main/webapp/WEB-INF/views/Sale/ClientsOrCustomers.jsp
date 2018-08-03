@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <head>
-        <jsp:include page="/WEB-INF/views/body.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/views/body.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/menu.jsp"></jsp:include>
-     <spring:url value="/addSaleBill/SaveCustomer"  var ="addCustomerUrl"/>
+     <spring:url value="/billing/save/customer"  var ="addCustomerUrl"/>
      </head>
      <style>
      .col-xs-3
@@ -61,7 +60,7 @@
 							<div class="col-xs-3">
 						<label>State</label>
 						<select id="state" name="state" class="form-control"
-									onchange="<%=request.getContextPath()%>/getCityFromState(this.value);">
+									onchange="getCityNameByState(this.value);">
 										<option value="0">---Select State---</option>
 										<c:forEach items="${stateList}" var="state"
 											varStatus="theCount">

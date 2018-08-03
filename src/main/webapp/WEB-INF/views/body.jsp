@@ -198,7 +198,9 @@ text-align: center !important;
 border:1px solid #ccc;
 }
 	</style>
+
 <script type="text/javascript">
+var contextPath='<%=request.getContextPath()%>';
 function isEmpty(text){
         var patt1 = /\W/g;
         var result = text.match(patt1);

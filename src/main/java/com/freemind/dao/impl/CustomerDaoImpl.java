@@ -44,11 +44,11 @@ public class CustomerDaoImpl implements CustomerDao {
 		return customer;
 	}
 	@Override
-	public Customer getCustomerByMobileNo(String id) {
+	public Customer getCustomerByMobileNo(String mobileNo) {
 		Session session;
 		session = sessionFactory.openSession();
 		Criteria criteria = session.createCriteria(Customer.class);
-		criteria.add(Restrictions.eq("mobileNo", id));
+		criteria.add(Restrictions.eq("mobileNo", mobileNo));
 		Customer customer = (Customer) criteria.uniqueResult();
 
 		return customer;

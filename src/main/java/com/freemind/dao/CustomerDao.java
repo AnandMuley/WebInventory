@@ -9,7 +9,7 @@ public interface CustomerDao {
 
 	public Customer getCustomerById(int id);
 
-	public Customer getCustomerByMobileNo(String no);
+	public Customer getCustomerByMobileNo(String mobileNo);
 
 	public void save(Customer customer);
 

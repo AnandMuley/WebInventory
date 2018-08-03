@@ -1,6 +1,6 @@
-function getCustomerDetailsById(id) {
+function getCustomerDetailsByMobileNo(mobileNo) {
 
-	if (id.match('[0-9]{10}')) {
+	if (mobileNo.match('[0-9]{10}')) {
 
 	} else {
 		alert("कृपया वैध मोबाईल क्रमांक प्रविष्ट करा");
@@ -9,10 +9,10 @@ function getCustomerDetailsById(id) {
 
 	$.ajax({
 		method : 'GET',
-		url : 'getCustomerDetails',
+		url : 'billing/customers/search',
 		dataType : 'json',
 		data : {
-			id : id
+			mobileNo : mobileNo
 		},
 		success : function(data) {
 			clearCustomerDetails();
@@ -40,7 +40,7 @@ function getProductDetailsByCatId(id) {
 
 	$.ajax({
 		method : 'GET',
-		url : 'getProductList',
+		url : 'billing/getProductList',
 		dataType : 'json',
 		data : {
 			id : id
@@ -71,7 +71,7 @@ function getProductDetailsById(id) {
 
 	$.ajax({
 		method : 'GET',
-		url : 'getProductDetails',
+		url : 'billing/getProductDetails',
 		dataType : 'json',
 		data : {
 			id : id
@@ -440,7 +440,7 @@ function saveBill() {
 	$.ajax({
 		contentType : 'application/json;',
 		method : 'POST',
-		url : 'saveBillData',
+		url : 'billing/saveBillData',
 		dataType : 'json',
 		data : JSON.stringify(sale),
 		success : function(data) {
@@ -484,7 +484,7 @@ function getBillNumber() {
 	$.ajax({
 		contentType : 'application/json;',
 		method : 'POST',
-		url : 'getBillNumber',
+		url : 'billing/getBillNumber',
 		dataType : 'json',
 		data : "",
 		success : function(data) {
@@ -499,7 +499,7 @@ function printBill() {
 	$.ajax({
 		contentType : 'application/json;',
 		method : 'GET',
-		url : 'printBill',
+		url : 'billing/printBill',
 		dataType : 'json',
 		data : {
 			billNo : billNo

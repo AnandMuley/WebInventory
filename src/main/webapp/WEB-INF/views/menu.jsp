@@ -36,8 +36,8 @@
 	var="departmentPermissionUrl" />
 <spring:url value="/viewPOByNO" var="viewPOByNOUrl" />
 <spring:url value="/viewPurchaseOrder" var="viewPirchaseOrderUrl" />
-<spring:url value="/addSaleBill" var="addSaleBillUrl" />
-<spring:url value="/addSaleBill/addCustomers" var="addClientUrl" />
+<spring:url value="/billing" var="billingUrl" />
+<spring:url value="/billing/customers" var="addClientUrl" />
 <spring:url value="/addUserPermission" var="userPermission" />
 <spring:url value="/customers" var="showCustomerUrl" />
 <nav class="navbar navbar-default navbar-static-top" role="navigation"
@@ -451,14 +451,14 @@
 						class="fa fa-bar-chart-o fa-fw"></i> <spring:message
 							code="label.page.bill" /><span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<!--<c:if test="${fn:contains(permissionList, 'Add Client/Customer' ) || sessionScope.userName=='admin'}">
+						<c:if test="${fn:contains(permissionList, 'Add Client/Customer' ) || sessionScope.userName=='admin'}">
 							<c:set var="showMenu" value="true" />
 							<li><a href="${addClientUrl}">Client/Customer</a></li>
-						</c:if>-->
+						</c:if>
 						<c:if
 							test="${fn:contains(permissionList, 'Add Sale Bill' ) || sessionScope.userName=='admin'}">
 							<c:set var="showMenu" value="true" />
-							<li><a href="${addSaleBillUrl}"><spring:message
+							<li><a href="${billingUrl}"><spring:message
 										code="label.page.SaleBill" /></a></li>
 						</c:if>
 					</ul> <!-- /.nav-second-level --></li>
