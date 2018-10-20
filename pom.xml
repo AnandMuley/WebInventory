@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>WebInventory Maven Webapp</name>
 	<properties>
-		<org.springframework.version>3.2.1.RELEASE</org.springframework.version>
+		<org.springframework.version>4.3.16.RELEASE</org.springframework.version>
 		<org.spring.security.version>3.2.1.RELEASE</org.spring.security.version>
 		<org.slf4j.version>1.6.1</org.slf4j.version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
@@ -132,28 +132,28 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${org.spring.security.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${org.spring.security.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${org.spring.security.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${org.spring.security.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
